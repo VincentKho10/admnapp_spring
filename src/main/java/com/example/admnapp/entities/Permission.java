@@ -1,5 +1,8 @@
 package com.example.admnapp.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,27 +16,28 @@ import jakarta.persistence.UniqueConstraint;
 public class Permission {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long permissionid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private Role role;
+    @ManyToMany(mappedBy = "permissions")
+    private Set<Role> roles = new HashSet<>();
     
-    public Permission(Long permissionid, String name) {
-        this.permissionid = permissionid;
+    public Permission(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 
     public Permission() {
     }
 
-    public Long getPermissionid() {
-        return permissionid;
+    public Long getId() {
+        return id;
     }
 
-    public void setPermissionid(Long permissionid) {
-        this.permissionid = permissionid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -46,7 +50,7 @@ public class Permission {
 
     @Override
     public String toString() {
-        return "Permission [permissionid=" + permissionid + ", name=" + name + "]";
+        return "Permission [id=" + id + ", name=" + name + "]";
     }
 
 }

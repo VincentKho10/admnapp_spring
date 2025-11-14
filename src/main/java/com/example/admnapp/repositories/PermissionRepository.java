@@ -8,5 +8,5 @@ import com.example.admnapp.entities.Permission;
 
 
 public interface PermissionRepository extends CrudRepository<Permission, Long> {
-    Optional<Permission> findByPermissionId(Long id);
+    Optional<Permission> findByid(Long id);
 }

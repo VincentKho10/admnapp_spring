@@ -11,7 +11,7 @@ public class RoleServices{
         this.roleRepository = roleRepository;
     }
 
-    public Iterable<Role> getAll(){
+    public Iterable<Role> getAllRole(){
         try {
             Iterable<Role> role = roleRepository.findAll();
             return role;
@@ -22,7 +22,7 @@ public class RoleServices{
 
     public Role getRole(Long id){
         try {
-            Role role = roleRepository.findByRoleid(id).orElse(null);
+            Role role = roleRepository.findById(id).orElse(null);
             if(role==null){
                 throw new ErrorHandler("role not found");
             }
@@ -43,7 +43,7 @@ public class RoleServices{
 
     public Role updateRole(Long id, Role role){
         try {
-            Role targetrole = roleRepository.findByRoleid(id).orElse(null);
+            Role targetrole = roleRepository.findById(id).orElse(null);
             if(targetrole==null){
                 throw new ErrorHandler("role not found");
             }

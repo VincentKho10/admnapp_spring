@@ -21,16 +21,17 @@ import jakarta.persistence.UniqueConstraint;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long roleid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
     private String role_name;
     private String description;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
         name = "role_permission",
-        joinColumns = @JoinColumn(name = "roleid"),
-        inverseJoinColumns = @JoinColumn(name = "permission")
+        joinColumns = @JoinColumn(name = "role_id"),
+        inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
     private Set<Permission> permissions = new HashSet<>();
     
@@ -42,12 +43,12 @@ public class Role {
         this.description = description;
     }
 
-    public Long getRoleid() {
-        return roleid;
+    public Long getId() {
+        return id;
     }
 
-    public void setRoleid(Long roleid) {
-        this.roleid = roleid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getRole_name() {
@@ -68,6 +69,6 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Role [roleid=" + roleid + ", role_name=" + role_name + ", description=" + description + "]";
+        return "Role [id=" + id + ", role_name=" + role_name + ", description=" + description + "]";
     } 
 }
